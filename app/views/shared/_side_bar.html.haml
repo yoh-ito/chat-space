@@ -1,12 +1,21 @@
 / ユーザー編集ページに遷移するためのパスを追加
-.side-bar
-  .header
-    %h3.header__name
-      = current_user.name
-    %ul.header__lists
-      %li.list
-        = link_to new_group_path do
-          = icon('fas', 'pen-square', class: 'icon')
-      %li.list
-        = link_to edit_user_path(current_user) do
-          = icon('fas', 'cog', class: 'icon')
+.side-main
+  .side-bar
+    .side_header
+      .side_header_box
+        %p.side-header__box__user-name
+          aa
+        %ul.side-header__menu__box
+          =link_to new_group_path, class: "contents__btn contents__btn--new-group" do
+            = icon('fas', 'edit',  class: "contents__btn--icon")
+          =link_to "#", class: "contents__btn contents__btn--new-group" do
+            = icon('fas', 'cog',  class: "contents__btn--icon")
+          
+  .side-contents  
+    .groups
+      = link_to "#", class:"group" do
+        .group
+          .group__name
+            test
+          .group__lastest-message
+            まだメッセージはありません
