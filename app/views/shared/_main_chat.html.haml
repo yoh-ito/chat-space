@@ -2,30 +2,25 @@
   .header
     .main-header__left-box
       .main-header__left-box__current-group
-        aa
+        = @group.name
       .main-header__left-box__member-list
-        Menber
-      .main-header__left-box__member-list__member
-        aa
+        Menber :
+        .main-header__left-box__member-list__member
+          - @group.group_users.each do |group_user|
+            = group_user.user.name
     .main-header__edit-btn
-      Edit
+      =link_to edit_group_path(@group.id), class: "contents__btn contents__btn--edit-group" do
+        Edit
   .contents 
     .messages
-      .message
-        .message__upper-info__talker
-          aa
-        .message__upper-info__date
-          2020/01/04(sat)15:36:00
-      .message__text
-        a
+      = render @messages
   .footer
     .input-box
-      .input-box__main
-        .input-box__text
-          %input{placeholder: "type a message", class:"type-a__message"}
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'input-box__text__message', placeholder: 'type a message'
         .input-box__image
-          %label{class: "contents__btn contents__btn--new-group"}
-            = icon('far', 'image',  class: "contents__btn--icon")
-            %input{type: "file", class: "file"}
-      .submit-btn
-        %input{type: "submit", value: "Sent", class: "submit" }
+          = f.label :image, class: 'label' do
+            = icon('fas', 'image', class: 'icon')
+            = f.file_field :image, class: 'hidden'
+        .submit-btn
+          = f.submit 'Send', class: 'form__submit'
