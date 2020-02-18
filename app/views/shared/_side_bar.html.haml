@@ -8,7 +8,7 @@
         %ul.side-header__menu__box
           =link_to new_group_path, class: "contents__btn contents__btn--new-group" do
             = icon('fas', 'edit',  class: "contents__btn--icon")
-          =link_to "#", class: "contents__btn contents__btn--new-group" do
+          =link_to edit_user_path(current_user), class: "contents__btn contents__btn--new-group" do
             = icon('fas', 'cog',  class: "contents__btn--icon")
           
   .side-contents  
