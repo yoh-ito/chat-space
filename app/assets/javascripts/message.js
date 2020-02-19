@@ -87,5 +87,4 @@ var reloadMessages = function() {
     //メッセージが入ったHTMLに、入れ物ごと追加
     $('.messages').append(insertHTML);
   });
- };
-});
+};
