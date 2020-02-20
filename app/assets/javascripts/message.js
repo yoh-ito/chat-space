@@ -55,7 +55,7 @@ $(function(){
   .done(function(data){
     var html = buildHTML(data);
     $('.messages').append(html);
-    $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight}, 10);      
+    $('.contents').animate({ scrollTop: $('.contents')[0].scrollHeight}, 10);      
     $('form')[0].reset();
     $(".form__submit").prop('disabled', false);
   })
@@ -66,6 +66,7 @@ $(function(){
 
     var reloadMessages = function() {
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
+    if (document.location.href.match(/\/groups\/\d+\/messages/));{
     last_message_id = $('.message:last').data("message-id");
     console.log(last_message_id);
     $.ajax({
@@ -85,10 +86,11 @@ $(function(){
       insertHTML += buildHTML(message)
     });
     //メッセージが入ったHTMLに、入れ物ごと追加
-    $('.messages').append(insertHTML);
+    $('.contents').append(insertHTML);
+    $('.contents').animate({ scrollTop: $('.contents')[0].scrollHeight}, 10);
     });
+    };
   };
-  if (document.location.href.match(/\/groups\/\d+\/messages/));
-    setInterval(reloadMessages, 7000)
+    setInterval(reloadMessages, 7000);
     
 });
