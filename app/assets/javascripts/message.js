@@ -1,44 +1,72 @@
 $(function(){ 
   function buildHTML(message){
   if ( message.image ) {
-    var html =
-      `<div class="message" data-message-id=${message.id}>
-        <div class="upper-message">
-          <div class="upper-message__user-name">
-            ${message.user_name}
-          </div>
-          <div class="upper-message__date">
-            ${message.created_at}
-          </div>
-        </div>
-        <div class="lower-message">
-          <p class="lower-message__content">
-            ${message.content}
-          </p>
-        </div>
-        <img src=${message.image} >
-      </div>`
+    // var html =
+    //   `<div class="message" data-message-id=${message.id}>
+    //     <div class="upper-message">
+    //       <div class="upper-message__user-name">
+    //         ${message.user_name}
+    //       </div>
+    //       <div class="upper-message__date">
+    //         ${message.created_at}
+    //       </div>
+    //     </div>
+    //     <div class="lower-message">
+    //       <p class="lower-message__content">
+    //         ${message.content}
+    //       </p>
+    //     </div>
+    //     <img src=${message.image} >
+    //   </div>`
+    var html = `<div class="message" data-message-id=${message.id}>
+    <div class="message__upper-info__talker">
+    ${message.user_name}
+    </div>
+    <div class="message__upper-info__date">
+    ${message.created_at}
+    </div>
+    </div>
+    <div class="message__text">
+    ${message.content}
+    </div>
+    <img src=${message.image} ></img>`
+    
     return html;
   } else {
-    var html =
-      `<div class="message" data-message-id=${message.id}>
-        <div class="upper-message">
-          <div class="upper-message__user-name">
-            ${message.user_name}
-          </div>
-          <div class="upper-message__date">
-            ${message.created_at}
-          </div>
-        </div>
-        <div class="lower-message">
-           <p class="lower-message__content">
-             ${message.content}
-           </p>
-         </div>
-       </div>`
+    // var html =
+    //   `<div class="message" data-message-id=${message.id}>
+    //     <div class="upper-message">
+    //       <div class="upper-message__user-name">
+    //         ${message.user_name}
+    //       </div>
+    //       <div class="upper-message__date">
+    //         ${message.created_at}
+    //       </div>
+    //     </div>
+    //     <div class="lower-message">
+    //        <p class="lower-message__content">
+    //          ${message.content}
+    //        </p>
+    //      </div>
+    //    </div>`
+
+    var html = `<div class="message" data-message-id=${message.id}>
+    <div class="message__upper-info__talker">
+    ${message.user_name}
+    </div>
+    <div class="message__upper-info__date">
+    ${message.created_at}
+    </div>
+    </div>
+    <div class="message__text">
+    ${message.content}
+    </div>`
+
      return html;
    };
   };
+
+
 
   $('#new_message').on('submit', function(e){
   e.preventDefault();
@@ -86,7 +114,7 @@ $(function(){
       insertHTML += buildHTML(message)
     });
     //メッセージが入ったHTMLに、入れ物ごと追加
-    $('.contents').append(insertHTML);
+    $('.messages').append(insertHTML);
     $('.contents').animate({ scrollTop: $('.contents')[0].scrollHeight}, 10);
     });
     };
